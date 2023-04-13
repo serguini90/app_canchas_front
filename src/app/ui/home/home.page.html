@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true" style="background-color: white;">
+  <swiper-container
+    class="slide-home"
+    autoplay="true"
+    autoplay-delay="3000"
+    speed="1000"
+    [slidesPerView]="1"
+    [loop]="true"
+  >
+    <swiper-slide *ngFor="let slide of slides"
+      ><ion-img [src]="slide.image"></ion-img>
+      <ion-grid>
+        <ion-row style="padding: 0px 40px">
+          <ion-col size="12"><h2>Discover Something Everyday</h2></ion-col>
+          <ion-col size="12"
+            ><p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p></ion-col
+          >
+        </ion-row>
+      </ion-grid>
+    </swiper-slide>
+  </swiper-container>
+  <ion-grid>
+    <ion-row style="text-align: center">
+      <ion-col size="12"
+        ><ion-button
+          style="width: 80%; margin: 10px 0px"
+          [routerLink]="['/login']"
+        >
+          SIGN IN</ion-button
+        ></ion-col
+      >
+      <ion-col size="12"
+        ><ion-button style="width: 80%; margin: 10px 0px">
+          SIGN UP</ion-button
+        ></ion-col
+      >
+    </ion-row>
+  </ion-grid>
+</ion-content>
