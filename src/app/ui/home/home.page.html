@@ -1,8 +1,8 @@
-<ion-content [fullscreen]="true" style="background-color: white;">
+<ion-content [fullscreen]="true" style="background-color: white;" class="ion-padding">
   <swiper-container
     class="slide-home"
     autoplay="true"
-    autoplay-delay="3000"
+    autoplay-delay="5000"
     speed="1000"
     [slidesPerView]="1"
     [loop]="true"
@@ -10,14 +10,9 @@
     <swiper-slide *ngFor="let slide of slides"
       ><ion-img [src]="slide.image"></ion-img>
       <ion-grid>
-        <ion-row style="padding: 0px 40px">
-          <ion-col size="12"><h2>Discover Something Everyday</h2></ion-col>
-          <ion-col size="12"
-            ><p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p></ion-col
-          >
+        <ion-row style="padding: 0px 20px; text-align: left;">
+          <ion-col size="12"><h3>{{slide.title}}</h3></ion-col>
+          <ion-col size="12"><h6>{{slide.subtitle}}</h6></ion-col>
         </ion-row>
       </ion-grid>
     </swiper-slide>
@@ -26,15 +21,16 @@
     <ion-row style="text-align: center">
       <ion-col size="12"
         ><ion-button
-          style="width: 80%; margin: 10px 0px"
+          style="width:90%;margin: 10px 0px"
           [routerLink]="['/login']"
         >
-          SIGN IN</ion-button
+          INICIAR SESIÓN</ion-button
         ></ion-col
       >
       <ion-col size="12"
-        ><ion-button style="width: 80%; margin: 10px 0px">
-          SIGN UP</ion-button
+        ><ion-button style="width:90%; margin: 10px 0px"
+        [routerLink]="['/register']">
+          REGISTRARME</ion-button
         ></ion-col
       >
     </ion-row>

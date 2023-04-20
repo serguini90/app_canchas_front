@@ -1,5 +1,12 @@
 .slide-home{
-    padding-top: 10rem;
-    padding-bottom: 10rem;
-    border-radius: 0px 0px 100px 100px;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+}
+
+ion-button{
+    height: 50px;
+}
+
+ion-button::part(native){
+    border-radius: 50px;
 }

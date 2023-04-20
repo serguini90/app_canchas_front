@@ -39,10 +39,9 @@
 	body {
 	  margin: 0;
 	  padding: 0;
-	  background: #f6f6f6;
+	  background: #ffffff;
 	  font-family: 'Poppins', sans-serif;
 	  overflow-x: hidden;
-	  height: 100vh;
 	  margin: auto;
 	  -webkit-box-align: center;
 	      -ms-flex-align: center;
@@ -55,4 +54,8 @@
 	          justify-content: center;
 	  flex-flow: row wrap;
 	  -ms-flex-flow: row wrap;
+	}
+
+	.toolbar-background{
+		background: white !important;
 	}

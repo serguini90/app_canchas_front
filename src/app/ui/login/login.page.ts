@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthUseCases } from 'src/app/domain/usecase/auth-use-case';
 
 @Component({
   selector: 'app-login',
@@ -14,15 +15,55 @@ import { RouterModule } from '@angular/router';
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
+  isAlertOpen = false;
+  alertButtons = ['OK'];
+  MessageAlert = '';
+  StatusAlert = '';
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder,
+    public _auth: AuthUseCases,
+    private router: Router
+    ) {
      this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      usuario: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
   ngOnInit() {
+  }
+
+  onSubmit(){
+    if (!this.loginForm.valid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+    const form = this.loginForm.value;
+    this._auth.loginUser(form).subscribe(
+      (data) => {
+        // El servidor ha respondido con éxito
+        if (data.estado == true) {
+          localStorage.setItem('token',data.respuesta);
+          this.StatusAlert = '¡Bienvenido!';
+          this.MessageAlert = 'Inicio de sesión exitoso';
+          this.isAlertOpen = true;
+          setTimeout(() => {
+            //this.router.navigate(['/home']);
+          }, 2000);
+        }else{
+          this.StatusAlert = 'Error';
+          this.MessageAlert = 'El usuario y la contraseña no coinciden';
+          this.isAlertOpen = true;
+        }
+      },
+      (error) => {
+        // Ha ocurrido un error en la petición
+        this.StatusAlert = 'Error';
+        this.MessageAlert =
+          'Ha ocurrido un error, intentelo de nuevo o comuniquese con el administrador';
+        this.isAlertOpen = true;
+      }
+    )
   }
 
 }
