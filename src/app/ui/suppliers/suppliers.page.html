@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border ion-padding-horizontal">
+  <ion-toolbar>
+    <div slot="start">Mis Canchas</div>
+    <div slot="end">
+      <ion-button class="ion-text-center btn-submit" id="new-modal" expand="block" type="submit">
+        Crear cancha
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="transparent" class="ion-padding-horizontal">
+  <h6 style="color:black">
+    Selecciona alguna de las canchas para actualizar o ver toda la información
+  </h6>
+  <div class="card-canchas">
+    <div class="" style="width: 35%">
+      <img
+        src="https://res.cloudinary.com/dlmuauyqc/image/upload/v1682189465/5581045_tjxm27.jpg"
+        class="img-cancha"
+      />
+    </div>
+    <div class="info-canchas" style="width: 65%">
+      <span class="title-cancha">Cancha: </span
+      ><span class="subtitle-cancha">La pedregosa</span><br />
+      <span class="title-cancha">Cantidad de jugadores: </span>
+      <span class="subtitle-cancha">5</span><br />
+      <span class="title-cancha">Valor: </span
+      ><span class="subtitle-cancha">$80.000</span><br /><br />
+      <ion-button class="ion-text-center btn-submit" id="edit-modal" expand="block" type="submit">
+        Actualizar
+      </ion-button>
+    </div>
+  </div>
+  <ion-modal id="new-modal" trigger="new-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel('new-modal')">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Crear Cancha</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm('new-modal')" [strong]="true">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding-no">
+        <app-new-suppliers></app-new-suppliers>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-modal id="edit-modal" trigger="edit-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel('edit-modal')">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Editar Cancha</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm('edit-modal')" [strong]="true">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding-no">
+        <app-edit-suppliers></app-edit-suppliers>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+<ion-footer>
+ <app-tabs-footer></app-tabs-footer>
+</ion-footer>

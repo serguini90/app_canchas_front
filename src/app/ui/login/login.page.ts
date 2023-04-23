@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { AuthUseCases } from 'src/app/domain/usecase/auth-use-case';
+import { decodeToken } from 'src/app/infraestructure/helpers/jwt-auth.helper';
 
 @Component({
   selector: 'app-login',
@@ -44,6 +45,10 @@ export class LoginPage implements OnInit {
         // El servidor ha respondido con éxito
         if (data.estado == true) {
           localStorage.setItem('token',data.respuesta);
+          const decoded = decodeToken(data.respuesta);
+          localStorage.setItem('idUsuario',decoded.usuario.idUsuario);
+          localStorage.setItem('indicadorProveedor',decoded.usuario.indicadorProveedor);
+          localStorage.setItem('usuario',decoded.usuario.usuario);
           this.StatusAlert = '¡Bienvenido!';
           this.MessageAlert = 'Inicio de sesión exitoso';
           this.isAlertOpen = true;
