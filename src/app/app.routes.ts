@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { DashboardPage } from './ui/dashboard/dashboard.page';
 
 export const routes: Routes = [
    {
@@ -24,7 +25,22 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadComponent: () => import('./ui/dashboard/dashboard.page').then( m => m.DashboardPage)
+    component: DashboardPage,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'reservas',
+      },
+      {
+        path: 'reservas',
+        loadChildren: () => import('./ui/booking/booking.module').then((m) => m.BookingPageModule),
+      },
+      {
+        path: 'canchas',
+        loadChildren: () => import('./ui/suppliers/suppliers.module').then((m) => m.SuppliersPageModule),
+      }
+    ],
   }
 
 ];

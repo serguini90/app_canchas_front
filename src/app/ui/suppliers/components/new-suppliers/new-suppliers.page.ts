@@ -6,9 +6,7 @@ import { IonicModule } from '@ionic/angular';
 @Component({
   selector: 'app-new-suppliers',
   templateUrl: './new-suppliers.page.html',
-  styleUrls: ['./new-suppliers.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  styleUrls: ['./new-suppliers.page.scss']
 })
 export class NewSuppliersPage implements OnInit {
 

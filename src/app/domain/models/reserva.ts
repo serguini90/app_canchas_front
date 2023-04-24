@@ -5,4 +5,5 @@ export interface ReservaDto {
     idCanchaHorario: string;
     idMedioPago: string;
     indicadorHabilitado: boolean;
+    metodoPago: string;
 }

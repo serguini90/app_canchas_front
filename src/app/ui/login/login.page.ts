@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { AuthUseCases } from 'src/app/domain/usecase/auth-use-case';
 import { decodeToken } from 'src/app/infraestructure/helpers/jwt-auth.helper';
+import { PreferencesService } from 'src/app/infraestructure/preferences.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginPage implements OnInit {
 
   constructor(public fb: FormBuilder,
     public _auth: AuthUseCases,
-    private router: Router
+    private router: Router,
+    private preferenceService: PreferencesService
     ) {
      this.loginForm = this.fb.group({
       usuario: ['', Validators.required],
@@ -49,12 +51,15 @@ export class LoginPage implements OnInit {
           localStorage.setItem('idUsuario',decoded.usuario.idUsuario);
           localStorage.setItem('indicadorProveedor',decoded.usuario.indicadorProveedor);
           localStorage.setItem('usuario',decoded.usuario.usuario);
+          this.preferenceService.setItem('idUsuario',decoded.usuario.idUsuario);
+          this.preferenceService.setItem('indicadorProveedor',decoded.usuario.indicadorProveedor);
           this.StatusAlert = '¡Bienvenido!';
           this.MessageAlert = 'Inicio de sesión exitoso';
-          this.isAlertOpen = true;
+          this.router.navigate( [ '/dashboard' ] );
+          /* this.isAlertOpen = true;
           setTimeout(() => {
             //this.router.navigate(['/home']);
-          }, 2000);
+          }, 2000); */
         }else{
           this.StatusAlert = 'Error';
           this.MessageAlert = 'El usuario y la contraseña no coinciden';

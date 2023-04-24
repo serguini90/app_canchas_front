@@ -1,0 +1,18 @@
+<ion-header class="ion-no-border ion-padding-horizontal">
+  <ion-toolbar>
+    <div slot="start">Mis reservas</div>
+    <div slot="end">
+      <ion-button class="ion-text-center btn-submit" id="new-modal" expand="block" type="button" (click)="crear()">
+        Reservar
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngFor="let i of reservas">
+    <ion-item>
+      <ion-label>{{i.fecha | date: 'dd-MM-YYYY'}}</ion-label>
+      <ion-label>{{i.metodoPago}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -23,5 +23,9 @@ export class ReservaService extends ReservaGateway {
         return this.http.put<ReservaDto>(this._url, body);
     }
 
+    override listarMisReservas(idUsuario: string): Observable<ReservaDto[]> {
+        return this.http.get<ReservaDto[]>(this._url + '/misReservas/' + idUsuario);
+    }
+
 
 }

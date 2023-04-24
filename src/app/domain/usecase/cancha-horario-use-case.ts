@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CanchaHorarioGateway } from '../models/gateway/cancha-horario.gateway';
 import { CanchaHorarioDto } from '../models/cancha-horario';
+import { CanchaHorarioService } from 'src/app/infraestructure/cancha-horario.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CanchaHorarioUseCase {
-  constructor(private _canchaHorarioGateway: CanchaHorarioGateway) {}
+  constructor(private _canchaHorarioGateway: CanchaHorarioService) {}
 
   crear(body: CanchaHorarioDto): Observable<CanchaHorarioDto> {
     return this._canchaHorarioGateway.crear(body);

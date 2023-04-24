@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { PreferencesService } from 'src/app/infraestructure/preferences.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +14,17 @@ import { IonicModule } from '@ionic/angular';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+  esProovedor?: boolean;
 
-  ngOnInit() {
+  constructor(private router: Router, private preferenceService: PreferencesService) { }
+
+  async ngOnInit() {
+    const valorProovedor = await this.preferenceService.getItem('indicadorProveedor');
+    this.esProovedor = !!valorProovedor && valorProovedor === '1';
+  }
+
+  cerrarSesion(){
+    this.router.navigate( [ '/' ] );
   }
 
 }

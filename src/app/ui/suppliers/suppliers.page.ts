@@ -8,15 +8,12 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { NewSuppliersPage } from './components/new-suppliers/new-suppliers.page';
 import { EditSuppliersPage } from './components/edit-suppliers/edit-suppliers.page';
 import { ModalController } from '@ionic/angular';
-import { TabsFooterPage } from '../tabs-footer/tabs-footer.page';
 
 
 @Component({
   selector: 'app-suppliers',
   templateUrl: './suppliers.page.html',
-  styleUrls: ['./suppliers.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule, NewSuppliersPage,EditSuppliersPage, TabsFooterPage]
+  styleUrls: ['./suppliers.page.scss']
 })
 export class SuppliersPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
