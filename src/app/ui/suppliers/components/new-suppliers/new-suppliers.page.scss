@@ -1,0 +1,57 @@
+.div-submit {
+  justify-content: center;
+  display: flex;
+  padding-top: 40px;
+}
+
+.btn-submit::part(native) {
+  border-radius: 50px;
+}
+
+.btn-submit {
+  width: 90%;
+}
+
+.div-img-login {
+  justify-content: center;
+  display: flex;
+}
+
+.img-login {
+  width: 200px;
+  height: 200px;
+}
+
+.padding-form {
+  margin-top: 20px;
+  border: 0px;
+}
+
+.label-form {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 13px;
+}
+
+.padding-form::part(native) {
+  border-radius: 50px;
+  background-color: #f6f6f6;
+  color: #4d4d4d;
+}
+
+.padding-form {
+  &.ion-invalid.ion-touched {
+    border: solid 2px;
+    border-color: #e40104 !important;
+    color: #e40104;
+    border-radius: 50px;
+  }
+}
+
+ion-button {
+  height: 50px;
+}
+
+ion-button::part(native) {
+  border-radius: 50px;
+}

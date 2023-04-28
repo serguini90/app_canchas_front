@@ -17,4 +17,12 @@ export class CanchaUseCase {
     return this._canchaGateway.actualizar(body);
   }
 
+  listarCancha(idUsuario:string): Observable<CanchaDto[]>{
+    return this._canchaGateway.listarCanchas(idUsuario);
+  }
+
+  getCanchaById(idCancha:string): Observable<CanchaDto>{
+    return this._canchaGateway.getCanchaById(idCancha);
+  }
+
 }

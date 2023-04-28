@@ -10,7 +10,7 @@ import { CanchaHorarioDto } from '../domain/models/cancha-horario';
 })
 export class CanchaHorarioService extends CanchaHorarioGateway {
 
-    private _url = environment.serviceUrl + '/canchaHorario';
+    private _url = environment.serviceUrl + '/cancha-horario';
 
     constructor(private http: HttpClient) {
         super();
@@ -21,6 +21,10 @@ export class CanchaHorarioService extends CanchaHorarioGateway {
     }
     override actualizar(body: CanchaHorarioDto): Observable<CanchaHorarioDto> {
         return this.http.put<CanchaHorarioDto>(this._url, body);
+    }
+
+    override getHorariosByCancha(idCancha: string): Observable<CanchaHorarioDto[]> {
+        return this.http.get<CanchaHorarioDto[]>(this._url+'/cancha/'+idCancha);
     }
 
 

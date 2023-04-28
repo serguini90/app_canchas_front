@@ -77,6 +77,24 @@
 
   
   --ion-toolbar-background: #ffffff;
+  --ion-color-black: black;
+
+}
+
+
+.ion-color-black {
+  --ion-color-base: var(--ion-color-black);
+  color:#8e8e8e;
+}
+
+ion-datetime {
+  --background: #f4f5f8;
+  --background-rgb: 255, 241, 242;
+  border-radius: 16px;
+}
+
+ion-datetime-button{
+  width: 100%;
 }
 
 

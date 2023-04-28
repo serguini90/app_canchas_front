@@ -1,0 +1,125 @@
+<ion-content class="ion-padding">
+  <form [formGroup]="newHorarioForm" (ngSubmit)="onSubmitNew()">
+    Hora Inicio
+    <ion-item lines="none" class="padding-form">
+      <ion-datetime-button datetime="horaInicio"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            formControlName="horaInicio"
+            id="horaInicio"
+            color="black"
+            mode="ios"
+            presentation="time"
+          ></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item><br>
+    Hora Fin
+    <ion-item lines="none" class="padding-form">
+      <ion-datetime-button datetime="horaFin"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            formControlName="horaFin"
+            id="horaFin"
+            color="black"
+            mode="ios"
+            presentation="time"
+          ></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <div class="div-submit">
+      <ion-button class="ion-text-center btn-submit" type="submit">
+        AGREGAR HORARIO
+      </ion-button>
+    </div>
+  </form>
+
+  <div class="lista-horarios">
+    <h4>Lista de horarios</h4>
+
+    <div class="horarios" *ngFor="let horario of listHorarios">
+      <div class="hora">{{horario.horaInicio}} a {{horario.horaFin}}</div>
+      <div class="hora">
+        <ion-icon
+          style="font-size: 20px"
+          expand="block"
+          (click)="editHorario(horario)"
+          name="create-outline"
+        ></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <ion-alert
+    [isOpen]="isAlertOpen"
+    [header]="StatusAlert"
+    [message]="MessageAlert"
+    [buttons]="alertButtons"
+    (didDismiss)="isAlertOpen=false"
+  ></ion-alert>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Editar horario</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item lines="none" class="padding-form">
+          <ion-datetime-button datetime="EdithoraInicio"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime
+                [value]="this.horarioEdit.horaInicio"
+                [(ngModel)]="this.horarioEdit.horaInicio"
+                id="EdithoraInicio"
+                color="black"
+                mode="ios"
+                presentation="time"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+        <ion-item lines="none" class="padding-form">
+          <ion-datetime-button datetime="EdithoraFin"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime
+                [value]="this.horarioEdit.horaFin"
+                [(ngModel)]="this.horarioEdit.horaFin"
+                id="EdithoraFin"
+                color="black"
+                mode="ios"
+                presentation="time"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+        <ion-item lines="none" class="padding-form">
+          <ion-toggle
+            [(ngModel)]="this.horarioEdit.indicadorHabilitado"
+            aria-label="Success toggle"
+            color="success"
+            >¿Horario habilitado?</ion-toggle
+          ><br /><br />
+        </ion-item>
+        <div class="div-submit">
+          <ion-button
+            class="ion-text-center btn-submit"
+            (click)="onSubmitEdit()"
+            type="submit"
+          >
+            ACTUALIZAR HORARIO
+          </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

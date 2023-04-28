@@ -1,4 +1,46 @@
 <ion-content class="ion-padding">
-  Edit
+  <form [formGroup]="canchaForm" (ngSubmit)="onSubmit()">
+    <ion-item lines="none" class="padding-form">
+      <ion-input
+        type="tel"
+        label="Cantidad de jugadores"
+        labelPlacement="stacked"
+        formControlName="cantidadJugadores"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="padding-form">
+      <ion-input
+        label="Precio (sin puntos ni comas)"
+        labelPlacement="stacked"
+        formControlName="precio"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="padding-form">
+      <ion-input
+        label="Dirección"
+        labelPlacement="stacked"
+        formControlName="direccion"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="padding-form">
+      <ion-toggle
+        formControlName="indicadorHabilitado"
+        aria-label="Success toggle"
+        color="success"
+        >¿Cancha habilitada?</ion-toggle
+      ><br /><br />
+    </ion-item>
+    <div class="div-submit">
+      <ion-button class="ion-text-center btn-submit" type="submit">
+        ACTUALIZAR CANCHA
+      </ion-button>
+    </div>
+  </form>
+  <ion-alert
+    [isOpen]="isAlertOpen"
+    [header]="StatusAlert"
+    [message]="MessageAlert"
+    [buttons]="alertButtons"
+    (didDismiss)="isAlertOpen=false"
+  ></ion-alert>
 </ion-content>
-  
