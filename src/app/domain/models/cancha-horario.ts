@@ -4,4 +4,5 @@ export interface CanchaHorarioDto {
     horaInicio: string;
     horaFin: string;
     indicadorHabilitado: boolean;
+    indicadorLibre: string;
 }

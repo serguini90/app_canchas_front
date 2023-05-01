@@ -5,4 +5,5 @@ export abstract class CanchaHorarioGateway {
   abstract crear(body: CanchaHorarioDto): Observable<CanchaHorarioDto>;
   abstract actualizar(body: CanchaHorarioDto): Observable<CanchaHorarioDto>;
   abstract getHorariosByCancha(idCancha:string): Observable<CanchaHorarioDto[]>;
+  abstract getHorariosByCanchaLibre(idCancha:string, objeto: any): Observable<CanchaHorarioDto[]>;
 }

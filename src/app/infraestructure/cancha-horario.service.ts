@@ -27,5 +27,8 @@ export class CanchaHorarioService extends CanchaHorarioGateway {
         return this.http.get<CanchaHorarioDto[]>(this._url+'/cancha/'+idCancha);
     }
 
+    override getHorariosByCanchaLibre(idCancha: string, objeto: any): Observable<CanchaHorarioDto[]> {
+        return this.http.post<CanchaHorarioDto[]>(this._url+'/cancha/'+idCancha + '/libre', objeto);
+    }
 
 }

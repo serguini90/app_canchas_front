@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { PreferencesService } from 'src/app/infraestructure/preferences.service';
+import { ApiInterceptor } from './http/api.interceptor';
 
 register();
 @Component({
@@ -12,6 +14,10 @@ register();
   imports: [IonicModule],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+  constructor(private preferenceService: PreferencesService) {}
+
+  async ngOnInit() {
+      ApiInterceptor.token = await this.preferenceService.getItem('token');
+  }
 }

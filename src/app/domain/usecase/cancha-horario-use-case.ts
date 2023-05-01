@@ -21,4 +21,8 @@ export class CanchaHorarioUseCase {
     return this._canchaHorarioGateway.getHorariosByCancha(idCancha);
   }
 
+  getHorariosByCanchaLibre(idCancha:string, objeto: any): Observable<CanchaHorarioDto[]>{
+    return this._canchaHorarioGateway.getHorariosByCanchaLibre(idCancha, objeto);
+  }
+
 }

@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthUseCases } from 'src/app/domain/usecase/auth-use-case';
 import { decodeToken } from 'src/app/infraestructure/helpers/jwt-auth.helper';
 import { PreferencesService } from 'src/app/infraestructure/preferences.service';
+import { ApiInterceptor } from 'src/app/http/api.interceptor';
 
 @Component({
   selector: 'app-login',
@@ -51,8 +52,10 @@ export class LoginPage implements OnInit {
           localStorage.setItem('idUsuario',decoded.usuario.idUsuario);
           localStorage.setItem('indicadorProveedor',decoded.usuario.indicadorProveedor);
           localStorage.setItem('usuario',decoded.usuario.usuario);
+          this.preferenceService.setItem('token',data.respuesta);
           this.preferenceService.setItem('idUsuario',decoded.usuario.idUsuario);
-          this.preferenceService.setItem('indicadorProveedor',decoded.usuario.indicadorProveedor);
+          this.preferenceService.setItem('indicadorProveedor',decoded.usuario.indicadorProveedor?.toString());
+          ApiInterceptor.token = data.respuesta;
           this.StatusAlert = '¡Bienvenido!';
           this.MessageAlert = 'Inicio de sesión exitoso';
           this.router.navigate( [ '/dashboard' ] );

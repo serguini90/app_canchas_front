@@ -6,20 +6,23 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PreferencesService } from '../infraestructure/preferences.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiInterceptor implements HttpInterceptor {
-  private token = localStorage.getItem('token');
-  constructor() {}
+  public static token: string | null;
+  constructor(private preferenceService: PreferencesService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     
     if (request.url.indexOf('api/usuario') > -1) return next.handle(request);
     
-    if (this.token) {
+    if (ApiInterceptor.token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${ApiInterceptor.token}`,
         },
       });
     }

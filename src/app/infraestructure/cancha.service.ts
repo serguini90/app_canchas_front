@@ -27,6 +27,10 @@ export class CanchaService extends CanchaGateway {
         return this.http.get<CanchaDto[]>(this._url+'/usuario/'+idUsuario);
     }
 
+    override listarCanchasHabilitado(): Observable<CanchaDto[]> {
+        return this.http.get<CanchaDto[]>(this._url+'/enabled');
+    }
+
     override getCanchaById(idCancha: string): Observable<CanchaDto> {
         return this.http.get<CanchaDto>(this._url+'/'+idCancha);
     }

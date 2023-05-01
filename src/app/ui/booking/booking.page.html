@@ -1,18 +1,62 @@
 <ion-header class="ion-no-border ion-padding-horizontal">
   <ion-toolbar>
-    <div slot="start">Mis reservas</div>
+    <div slot="start">Mis Reservas</div>
     <div slot="end">
-      <ion-button class="ion-text-center btn-submit" id="new-modal" expand="block" type="button" (click)="crear()">
-        Reservar
+      <ion-button
+        class="ion-text-center btn-submit"
+        id="new-modal"
+        (click)="crear()"
+        expand="block"
+        type="button"
+      >
+        Crear Reserva
       </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-list *ngFor="let i of reservas">
-    <ion-item>
-      <ion-label>{{i.fecha | date: 'dd-MM-YYYY'}}</ion-label>
-      <ion-label>{{i.metodoPago}}</ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+<ion-content color="transparent" class="ion-padding-horizontal">
+  <h6 style="color: black">
+    Disfruta de tus partidos en cada una de las canchas disponibles
+  </h6>
+  
+  <p *ngIf="reservas.length === 0">No tienes reservas disponibles.</p>
+  
+  <div class="cont-card" *ngFor="let item of reservas">
+    <div class="card-canchas">
+      <div class="" style="width: 35%">
+        <img
+          src="https://panoramadeportivo.cl/wp-content/uploads/2018/08/14692112_953564414750223_891606013796800848_o.png"
+          class="img-cancha"
+        />
+      </div>
+      <div class="info-canchas" style="width: 65%">
+        <span class="title-cancha">Cancha: </span
+        ><span class="subtitle-cancha">{{item.direccion}}</span><br />
+        <span class="title-cancha">Metodo de pago: </span>
+        <span class="subtitle-cancha">{{item.metodoPago}}</span><br />
+        <span class="title-cancha">Fecha: </span><span class="subtitle-cancha">{{item.fecha | date: 'dd-MM-YYYY' }}</span
+        ><br />
+        <span class="title-cancha">Horario: </span>
+        <span class="subtitle-cancha">{{item.horaInicio}}-{{item.horaFin}}</span><br />
+      </div>
+      <div class="cont-button">
+        <ion-button
+          class="ion-text-center btn-submit"
+          (click)="eliminar(item)"
+          expand="block"
+          type="button"
+        >
+          Cancelar reserva
+        </ion-button>
+      </div>
+    </div>
+  </div>
+  </ion-content>
+
+
+<ion-alert
+  [isOpen]="abrirAlert"
+  header="Confirmación"
+  message="¿Esta seguro que desea cancelar la reserva?"
+  [buttons]="alertButtons"
+></ion-alert>

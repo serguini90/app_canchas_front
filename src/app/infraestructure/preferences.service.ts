@@ -17,4 +17,9 @@ export class PreferencesService {
         const {value} = await Preferences.get({ key });
         return value;
     }
+
+    async removeItem(key: string){
+        await Preferences.remove({ key });
+        return true;
+    }
 }

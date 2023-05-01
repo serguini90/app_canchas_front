@@ -6,4 +6,5 @@ export abstract class CanchaGateway {
   abstract actualizar(body: CanchaDto): Observable<CanchaDto>;
   abstract listarCanchas(idUsuario: string): Observable<CanchaDto[]>;
   abstract getCanchaById(idCancha: string): Observable<CanchaDto>;
+  abstract listarCanchasHabilitado(): Observable<CanchaDto[]>;
 }

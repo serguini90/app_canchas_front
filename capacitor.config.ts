@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.canchas_sinteticas',
+  appId: 'io.ionic.starter',
   appName: 'canchas_sinteticas',
   webDir: 'www',
   bundledWebRuntime: false

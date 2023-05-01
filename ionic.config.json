@@ -1,5 +1,7 @@
 {
   "name": "canchas_sinteticas",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

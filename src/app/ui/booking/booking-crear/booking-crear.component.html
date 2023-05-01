@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reservar</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="formulario" *ngIf="!cargando">
+
+    <ion-item lines="none">
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-datetime formControlName="fecha" style="margin-top: 20px;"
+                    displayFormat="DD/MM/YYYY" placeholder="Seleccionar fecha"
+                    pickerFormat="DD/MMMM/YYYY"
+                    (ionChange)="cargarListadoHorarios()"
+                    presentation="date" [min]="minDate"
+                    month-names="enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre"
+                    month-short-names="ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic"
+                    day-names="lunes, martes, miercoles, jueves, viernes, sabado, domingo"
+                    day-short-names="lun, mar, mie, jue, vie, sab, dom" cancelText="Cancelar"
+                    doneText="Aceptar">
+      </ion-datetime>
+    </ion-item>
+
+
+    <ion-item lines="none">
+      <ion-label position="floating">Medio de pago</ion-label>
+      <ion-select [okText]="'Aceptar'" [cancelText]="'Cancelar'"
+                  placeholder="Seleccionar" formControlName="idMedioPago">
+        <ion-select-option *ngFor="let item of lisMetodosPago" [value]="item.idLista">{{ item.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="floating">Cancha</ion-label>
+      <ion-select [okText]="'Aceptar'" [cancelText]="'Cancelar'"
+                  (ionChange)="cargarListadoHorarios()"
+                  placeholder="Seleccionar" formControlName="idCancha">
+        <ion-select-option *ngFor="let item of lisCanchas" [value]="item.idCancha">{{ item.direccion }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-card style="margin-top: 15px; margin-bottom: 10px;">
+      <ion-card-header>
+        <ion-card-title>Horarios</ion-card-title>
+        <ion-card-subtitle>Disponibilidad de horarios</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <p *ngIf="lisHorarios.length === 0">No existen horarios disponibles para seleccionar.</p>
+        <ion-item lines="none" button *ngFor="let item of lisHorarios" (click)="seleccionar(item)" [ngClass]="{'item-background-color': item.idCanchaHorario === f['idCanchaHorario'].value}">
+          <ion-label>{{item.horaInicio}}-{{item.horaFin}}</ion-label>
+          <ion-icon style="color: green" name="checkmark-circle-outline" slot="end" *ngIf="item.indicadorLibre === '1'"></ion-icon>
+          <ion-icon style="color: red" name="close-circle-outline" slot="end" *ngIf="item.indicadorLibre === '0'"></ion-icon>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    
+
+    <div class="ion-text-center">
+      <ion-button color="light" (click)="regresar()">
+        <ion-label>Cancelar</ion-label>
+      </ion-button>
+  
+      <ion-button type="button" (click)="guardar()" [disabled]="!formulario.valid">
+        <ion-label>Guardar</ion-label>
+      </ion-button>
+    </div>
+  </form>
+  
+
+</ion-content>
+
+<ion-alert [isOpen]="abrirAlert" header="Confirmación" message="¿Esta seguro que desea salir?"
+  [buttons]="alertButtons"></ion-alert>
