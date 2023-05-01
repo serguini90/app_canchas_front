@@ -4,7 +4,7 @@
     <div slot="end">
       <ion-button
         class="ion-text-center btn-submit"
-        id="new-modal"
+        id="new-modal-suppliers"
         expand="block"
         type="submit"
       >
@@ -105,22 +105,22 @@
     </div>
   </div>
   <ion-modal
-    id="new-modal"
-    trigger="new-modal"
+    id="new-modal-suppliers"
+    trigger="new-modal-suppliers"
     (willDismiss)="onWillDismiss($event)"
   >
     <ng-template>
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button (click)="cancel('new-modal')">Cancelar</ion-button>
+            <ion-button (click)="cancel('new-modal-suppliers')">Cancelar</ion-button>
           </ion-buttons>
           <ion-title>Crear Cancha</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding-no">
         <app-new-suppliers
-          (ejecutarFuncion)="confirm('new-modal')"
+          (ejecutarFuncion)="confirm('new-modal-suppliers')"
         ></app-new-suppliers>
       </ion-content>
     </ng-template>
